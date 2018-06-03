@@ -33,7 +33,8 @@ BLACK = 0x000000
 ############################ HELPER FUNCTIONS ##################################
 ################################################################################
 
-dIdx_to_translation = [(-1,-1), (0, -1), (1, -1), (1, 0), (1, 1), (0, 1), (-1, 1), (-1, 0)]
+dIdx_to_translation = [(-1,-1), (0, -1), (1, -1), (1, 0),
+                       (1, 1), (0, 1), (-1, 1), (-1, 0)]
 
 def radToIdx(r):
     """
@@ -488,8 +489,9 @@ class Game:
                     self.world.newBee(x, y)
                     n_bees -= 1
         
-        self.x = self.width/2 - VIEW_WIDTH/2
-        self.y = self.height/2 - VIEW_HEIGHT/2
+        # Upper-left coordinates of rendering window
+        self.x = self.width//2 - VIEW_WIDTH//2
+        self.y = self.height//2 - VIEW_HEIGHT//2
         self.screen = surf
         self.screen1 = pg.Surface((VIEW_WIDTH, VIEW_HEIGHT))	# unscaled screen surface
         self.clock = pg.time.Clock()
@@ -514,8 +516,9 @@ class Game:
     
     def saveAdn(self, bees_list):
         str_format = "{:10} {:10} {:10} {:10} {:10} {:10} {:10} {:10} {:10}"
-        adn = [str_format.format("clan", "forag", "aggr", "mate",\
-                                 "f_lead", "f_neigh", "stress", "feed", "explo")+'\n']
+        adn = [str_format.format("clan", "forag", "aggr", "mate",
+                                 "f_lead", "f_neigh", "stress", "feed",
+                                 "explo")+'\n']
         for b in bees_list:
             str = str_format.format(*b.adn)
             str += "\t[{}]\n".format(b.generation)
